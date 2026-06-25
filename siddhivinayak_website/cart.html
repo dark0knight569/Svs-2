@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sidhnayak Services - Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="auth.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1c1b1b",
+                    "surface-container": "#f0eded",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffe170",
+                    "secondary-fixed-dim": "#ffb693",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#705d00",
+                    "surface-container-highest": "#e5e2e1",
+                    "tertiary-fixed": "#ece3bb",
+                    "on-background": "#1c1b1b",
+                    "on-surface-variant": "#4d4632",
+                    "tertiary-fixed-dim": "#d0c7a0",
+                    "secondary-fixed": "#ffdbcc",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-dim": "#dcd9d9",
+                    "outline-variant": "#d0c6ab",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eae7e7",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "on-secondary-fixed-variant": "#7a2f00",
+                    "secondary": "#a14100",
+                    "secondary-container": "#ff7017",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-primary": "#e9c400",
+                    "primary-container": "#ffd600",
+                    "outline": "#7f775f",
+                    "tertiary-container": "#e3d9b2",
+                    "on-tertiary-fixed": "#201c04",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#544600",
+                    "primary": "#705d00",
+                    "tertiary": "#655f3f",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#655f3f",
+                    "inverse-surface": "#313030",
+                    "on-primary-fixed": "#221b00",
+                    "on-tertiary-fixed-variant": "#4d472a",
+                    "on-secondary-container": "#5b2100",
+                    "primary-fixed-dim": "#e9c400",
+                    "surface-tint": "#705d00",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e5e2e1",
+                    "on-secondary-fixed": "#351000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "base": "8px",
+                    "lg": "48px",
+                    "xl": "80px",
+                    "sm": "12px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .gradient-bg {
+            background: linear-gradient(-45deg, #FFD600, #F4680B, #FFB600, #FF8C00);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(244, 104, 11, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #FFD600 0%, #F4680B 100%);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .btn-primary:hover {
+            background-position: right center;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen font-body-md text-on-surface antialiased flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-on-secondary/10 shadow-[0_8px_30px_rgb(244,104,11,0.1)]">
+<div class="flex justify-between items-center px-margin-desktop max-w-7xl mx-auto py-2">
+<div class="font-display-lg text-headline-sm bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate pr-4">
+                Siddhivinayak Services
+            </div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex gap-md items-center font-body-md text-body-md">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform" href="home.html">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform" href="services.html">Services</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform" href="catalog.html">Buy</a>
+</div>
+<div class="flex items-center gap-sm">
+<!-- Search Bar (on_right) -->
+<div class="relative hidden md:block mr-md">
+<input class="w-48 bg-secondary-fixed/5 border border-outline-variant rounded-full py-1.5 px-4 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container text-body-md font-body-md" placeholder="Search..." type="text">
+<span class="material-symbols-outlined absolute right-3 top-2 text-on-surface-variant">search</span>
+</div>
+<button onclick="window.location.href='cart.html'" class="text-primary hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform p-2 relative flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+<span class="font-label-bold hidden sm:inline">Shopping Cart</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-error text-on-error text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+</button>
+<button class="flex items-center gap-1 text-primary hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[120px] pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full flex flex-col gap-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Shopping Cart</h1>
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Cart Items (Left) -->
+<div class="flex-grow flex flex-col gap-md lg:w-2/3">
+<div id="cart-items-container"></div>
+</div>
+<!-- Order Summary (Right) -->
+<div class="lg:w-1/3">
+<div class="glass-panel p-md rounded-xl flex flex-col gap-md premium-shadow sticky top-32">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant/30 pb-4">Order Summary</h2>
+<div class="flex flex-col gap-3 font-body-md text-body-md text-on-surface-variant pt-2">
+<div class="flex justify-between items-center">
+<span>Subtotal</span>
+<span id="subtotal" class="font-medium text-on-surface">₹0.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span>GST (18%)</span>
+<span id="gst" class="font-medium text-on-surface">₹0.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Delivery Charge</span>
+<span id="delivery" class="font-medium text-on-surface">₹0.00</span>
+</div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant/30 pt-4 mt-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span id="total" class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold">₹0.00</span>
+</div>
+<button onclick="window.location.href='checkout.html'" class="btn-primary w-full text-on-primary font-label-bold text-label-bold py-4 px-6 rounded-xl shadow-[0_4px_12px_rgb(244,104,11,0.2)] mt-4 hover:shadow-[0_8px_24px_rgb(244,104,11,0.3)] transition-shadow text-lg">Proceed to Checkout</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-highest dark:bg-inverse-surface border-t border-on-secondary/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-md px-margin-desktop py-lg max-w-7xl mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface opacity-80 hover:opacity-100 transition-opacity tracking-tighter">
+                Sidhnayak Services
+            </div>
+<div class="flex flex-wrap justify-center gap-md font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="text-secondary font-body-md text-body-md opacity-80 hover:opacity-100 transition-opacity">
+                © 2024 Sidhnayak Services. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+function renderCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let container = document.getElementById('cart-items-container');
+    container.innerHTML = '';
+    
+    let subtotal = 0;
+    
+    if (cart.length === 0) {
+        container.innerHTML = '<p class="text-on-surface-variant font-body-lg text-body-lg">Your cart is empty.</p>';
+    } else {
+        cart.forEach((item, index) => {
+            subtotal += item.price * item.quantity;
+            let itemHtml = `
+            <div class="glass-panel p-4 md:p-md rounded-xl flex flex-col sm:flex-row items-center gap-md premium-shadow mb-4">
+                <div class="w-full sm:w-32 h-32 relative overflow-hidden bg-white rounded-lg flex-shrink-0">
+                    <img class="w-full h-full object-cover" src="${item.img}">
+                </div>
+                <div class="flex flex-col flex-grow w-full gap-2">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">${item.name}</h3>
+                    <p class="text-on-surface-variant font-body-md text-body-md">${item.desc}</p>
+                    <div class="flex justify-between items-center mt-2">
+                        <div class="flex items-center gap-2 border border-outline-variant/50 rounded-full px-2 py-1 bg-white/50">
+                            <button onclick="updateQty('${item.id}', -1)" class="text-on-surface-variant hover:text-primary transition-colors w-8 h-8 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-sm">remove</span></button>
+                            <span class="font-label-bold w-6 text-center">${item.quantity}</span>
+                            <button onclick="updateQty('${item.id}', 1)" class="text-on-surface-variant hover:text-primary transition-colors w-8 h-8 flex items-center justify-center rounded-full"><span class="material-symbols-outlined text-sm">add</span></button>
+                        </div>
+                        <span class="font-headline-md text-headline-md text-primary">₹${Number(item.price).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                    </div>
+                </div>
+            </div>`;
+            container.innerHTML += itemHtml;
+        });
+    }
+    
+    let gst = subtotal * 0.18;
+    let delivery = (cart.length > 0) ? (subtotal > 100000 ? 0 : 1500) : 0; 
+    let total = subtotal + gst + delivery;
+    
+    document.getElementById('subtotal').innerText = '₹' + Number(subtotal).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('gst').innerText = '₹' + Number(gst).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('delivery').innerText = '₹' + Number(delivery).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('total').innerText = '₹' + Number(total).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    updateCartBadge();
+}
+
+function updateCartBadge() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let badge = document.getElementById('cart-badge');
+    if (badge) {
+        if (count > 0) {
+            badge.innerText = count;
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+    }
+}
+
+function updateQty(id, delta) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            cart = cart.filter(i => i.id !== id);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+</body></html>

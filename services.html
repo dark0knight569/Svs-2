@@ -1,0 +1,400 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Services Center - Sidhnayak Services</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="auth.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#705d00",
+                        "on-secondary-fixed-variant": "#7a2f00",
+                        "on-primary-fixed-variant": "#544600",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed-dim": "#e9c400",
+                        "background": "#fcf9f8",
+                        "surface-bright": "#fcf9f8",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary": "#a14100",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#705d00",
+                        "tertiary-fixed-dim": "#d0c7a0",
+                        "outline": "#7f775f",
+                        "on-primary-fixed": "#221b00",
+                        "secondary-fixed": "#ffdbcc",
+                        "outline-variant": "#d0c6ab",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#e3d9b2",
+                        "tertiary": "#655f3f",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-container": "#ff7017",
+                        "tertiary-fixed": "#ece3bb",
+                        "on-surface-variant": "#4d4632",
+                        "on-secondary-fixed": "#351000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#705d00",
+                        "primary-container": "#ffd600",
+                        "surface-variant": "#e5e2e1",
+                        "inverse-primary": "#e9c400",
+                        "on-tertiary-container": "#655f3f",
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed": "#201c04",
+                        "secondary-fixed-dim": "#ffb693",
+                        "surface-container-highest": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#5b2100",
+                        "surface-container": "#f0eded",
+                        "primary-fixed": "#ffe170",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#4d472a",
+                        "surface-container-high": "#eae7e7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "16px",
+                        "pill": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    },
+                    "backgroundImage": {
+                        'gradient-primary': 'linear-gradient(to right, #FFD600, #F4680B)',
+                        'gradient-primary-hover': 'linear-gradient(to right, #F4680B, #FFD600)',
+                        'glow-primary': 'radial-gradient(circle, rgba(244,104,11,0.15) 0%, rgba(255,255,255,0) 70%)'
+                    },
+                    "boxShadow": {
+                        'glow': '0 8px 30px rgba(244,104,11,0.1)',
+                        'input-focus': '0 0 0 2px #FFD600, 0 0 15px rgba(244,104,11,0.2)'
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: linear-gradient(-45deg, #FFD600, #F4680B, #FFB600, #FF8C00); background-size: 400% 400%; animation: gradientWave 10s ease infinite; background-attachment: fixed; }
+        @keyframes gradientWave { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .bg-gradient-animate { background-size: 200% auto; transition: background-position 0.5s ease; }
+        .bg-gradient-animate:hover { background-position: right center; }
+        .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-inner-glow { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 8px 30px rgba(244,104,11,0.1); }
+        .brand-products-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+            opacity: 0;
+        }
+        .brand-products-container.active {
+            max-height: 500px; /* Arbitrary large enough height */
+            opacity: 1;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="text-on-surface flex flex-col min-h-screen font-body-md text-body-md relative overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 glass-nav border-b border-on-secondary/10 shadow-[0_8px_30px_rgb(244,104,11,0.1)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-7xl mx-auto">
+<div class="font-display-lg text-display-lg text-on-surface" style="font-size: 24px; line-height: 32px;">Siddhivinayak Services&nbsp;</div>
+<nav class="hidden md:flex gap-md items-center font-body-md text-body-md">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform" href="home.html">Home</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 hover:text-secondary transition-colors duration-300 active:scale-95 transition-transform" href="services.html">Services</a>
+</nav>
+
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[88px] pb-lg relative w-full">
+<!-- Ambient Glow -->
+<div class="absolute top-0 left-0 w-full h-[500px] bg-glow-primary pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop w-full flex flex-col gap-lg">
+<!-- Hero Header -->
+<section class="flex flex-col items-center justify-center text-center py-lg mt-md">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">Authorised Service Partner</h1>
+
+<!-- Search Bar -->
+<div class="mt-lg w-full max-w-xl relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant z-10 pointer-events-none">search</span>
+<input class="w-full pl-12 pr-4 py-sm bg-surface/90 border-none rounded-pill font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:ring-0 focus:shadow-input-focus transition-all duration-300" placeholder="Search for partner brands (e.g. Intel, Gigabyte)..." type="text" id="brand-search-input">
+</div>
+</section>
+<!-- Services Grid -->
+
+<!-- Partner Brands Section -->
+<section class="mt-lg p-lg bg-surface/70 rounded-[24px] glass-nav card-inner-glow text-center">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Partner Brands</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-md max-w-3xl mx-auto">.</p>
+<div class="flex flex-wrap justify-center gap-3" id="brand-buttons">
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Geionix">Geionix</button>
+<button class="brand-btn px-4 py-2 rounded-full font-label-bold border shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-on-surface border-outline-variant" data-brand="Digisol">Digisol</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Intel">Intel</button>
+<button class="brand-btn px-4 py-2 rounded-full font-label-bold border shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-on-surface border-outline-variant" data-brand="Intex">Intex</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Gigabyte">Gigabyte</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Adata">Adata</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="EVM">EVM</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="iBall">iBall</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Biostar">Biostar</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="BRYT">BRYT</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Cooler Master">Cooler Master</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Corsair">Corsair</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Crucial">Crucial</button>
+<button class="brand-btn px-4 py-2 rounded-full font-label-bold border shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-on-surface border-outline-variant" data-brand="Creative">Creative</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="GALAX">GALAX</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Inno 3D">Inno 3D</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Lexar">Lexar</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Mercury">Mercury</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Micron">Micron</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Nextron">Nextron</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Sapphire">Sapphire</button>
+<button class="brand-btn px-4 py-2 rounded-full font-label-bold border shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-on-surface border-outline-variant" data-brand="Syrotech">Syrotech</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Verbatim">Verbatim</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Zotac">Zotac</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Blue Print">Blue Print</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Cellecore">Cellecore</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Kratos">Kratos</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Portonics">Portonics</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Snapup">Snapup</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Tag">Tag</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Team Group">Team Group</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Rapoo">Rapoo</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Lappies">Lappies</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Toreti">Toreti</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Pebble">Pebble</button>
+<button class="brand-btn px-4 py-2 rounded-full font-label-bold border shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary bg-surface text-on-surface border-outline-variant" data-brand="Philips">Philips</button>
+<button class="brand-btn px-4 py-2 bg-surface rounded-full text-on-surface font-label-bold border border-outline-variant shadow-sm hover:border-primary hover:bg-primary-container/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-brand="Truke">Truke</button>
+</div><div id="no-results-message" class="hidden mt-md text-on-surface-variant font-body-lg">No brands found matching your search.</div>
+<div class="brand-products-container bg-surface rounded-[16px] border border-outline-variant p-md mt-0 mx-auto max-w-3xl text-left shadow-sm" id="products-display">
+<div class="flex items-center justify-between mb-sm border-b border-outline-variant pb-xs">
+<h3 class="font-headline-sm text-primary" id="selected-brand-title">Intex Products</h3>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 rounded-full hover:bg-surface-variant" id="close-products-btn">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2 font-body-md text-on-surface-variant" id="product-list-content"><span class="px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap">Keyboard</span><span class="px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap">Motherboard</span><span class="px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap">UPS</span><span class="px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap">Power Bank</span><span class="px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap">UPS Battery</span></div>
+<div id="brand-contact-info" class="hidden flex-col gap-2 p-4 bg-surface-container-lowest rounded-xl mt-4 border border-outline-variant/30">
+    <h4 class="font-label-bold text-on-surface">Support Contact</h4>
+    <div class="flex items-start gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-[16px] mt-0.5">call</span> <span id="brand-number"></span></div>
+    <div class="flex items-start gap-2 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-[16px] mt-0.5">mail</span> <span id="brand-email"></span></div>
+</div>
+</div>
+<script>
+    const brandData = {
+        "Geionix": "Motherboard, Keyboard, SSD, M.2, NVMe, SATA HDD, Mouse, Barebone, PoE Switch, Cartridge, Memory Card, Pendrive, SMPS, Monitor, UPS, Battery, Processor",
+        "Digisol": "ONT, Router, PoE Switch, Wi-Fi Dongle, ONU",
+        "Intel": "Processor, Motherboard",
+        "Intex": "Keyboard, Motherboard, UPS, Power Bank, UPS Battery",
+        "Gigabyte": "Motherboard, Graphic Card, SMPS, Monitor, Liquid Cooler",
+        "Adata": "Gaming RAM, SSD",
+        "EVM": "Internal SSD, Portable SSD, Desktop RAM, Laptop RAM, Server RAM, Pendrive, Memory Card, Motherboard, Graphic Card, Cabinet, SMPS, Cooling Fan, LED Monitor, Keyboard, Mouse, Line Interactive UPS, Type-C Docking Station, USB Hub, Monitor Stand, Network Cable, Wi-Fi Dongle, Power Bank, Wall Charger, Car Charger, Wireless Charger, Cable & Adapter, Mobile Cooler, Laptop Cooling Pad, TWS Earbuds, Bluetooth Neckband, Portable Speaker, Type-C Earphone, Audio Aux Cable, Smartwatch, Toner Cartridge, Barcode Scanner",
+        "iBall": "Keyboard, Mouse, Keyboard & Mouse Combo, Webcam, Soundbar, Portable Speaker, Desktop Speaker, Cabinet / Chassis, UPS, Barcode Scanner, USB Dongle, USB Hub, Laptop Stand",
+        "Biostar": "Motherboard",
+        "BRYT": "Card Reader, CF Express, RAM, SSD M.2, Micro SSD, NVMe, SATA SD Card, USB, USB Hub",
+        "Cooler Master": "CM Combo, CM Cooler, CM Fan, CM Headset, CM Keyboard, CM Monitor, CM Mouse, CM Power Supply, Strom Controller",
+        "Corsair": "Cooling Accessory, Casing, Cooler, Fan, Headset, Hydro X Series, Keyboard, Link, Memory, Monitor, Mouse Pad, Pendrive, SMPS, SSD, Streaming",
+        "Crucial": "SSD, RAM",
+        "Creative": "Audio Solutions",
+        "GALAX": "Graphic Card, Motherboard",
+        "Inno 3D": "Graphic Card",
+        "Lexar": "SSD, Pendrive, MicroSD Card, M.2, NVMe, Card Reader",
+        "Mercury": "Graphic Card, Motherboard, Mouse, TFT Monitor, SMPS, Keyboard",
+        "Micron": "RAM, SSD",
+        "Nextron": "RAM, Graphic Card, SSD, Motherboard, M.2",
+        "Sapphire": "GPU",
+        "Syrotech": "ONT, PoE Switch, Media Converter, ONU",
+        "Verbatim": "Adapter, SD Card, Disk Drive, Cable, M.2, SATA, NVMe",
+        "Zotac": "Graphic Card",
+        "Blue Print": "Thermal Printer",
+        "Cellecore": "TV, AC, Washing Machine",
+        "Kratos": "BT Neckband, Car Charger, Charger, Data Cable, Power Bank, TWS, Watch, Speaker",
+        "Portonics": "Speaker",
+        "Snapup": "TWS, Headphone, Neckband, Speaker, Watch, Mixer Grinder",
+        "Tag": "Gamepad, Keyboard, Mouse, Speaker, Mouse Pad, Cooling Fan, Spike Guard, USB Hub, Wi-Fi Adapter",
+        "Team Group": "SSD, RAM",
+        "Rapoo": "Keyboard, Mouse, Headphone",
+        "Lappies": "Laptop Spares",
+        "Toreti": "Monitor",
+        "Pebble": "Neckband, Watch, Keyboard",
+        "Philips": "Onsite Call Available",
+        "Truke": "TWS Earbuds"
+    };
+
+    const brandContactData = {
+        "Geionix": { number: "+91-99901-20066", email: "care@geonix.in" },
+        "Digisol": { number: "1800-209-3444", email: "helpdesk@digisol.com" },
+        "Intel": { number: "000-800-440-2319", email: "support@intel.com" },
+        "Intex": { number: "0120-489-5555", email: "info@intex.in" },
+        "Gigabyte": { number: "1800-22-0966", email: "support@gigabyte.com (Primary support is via esupport.gigabyte.com)" },
+        "Adata": { number: "+91-98701-93819", email: "support_in@adata.com" },
+        "EVM": { number: "1800-102-0432", email: "cc@bestevm.com / info@bestevm.com" },
+        "iBall": { number: "1860-266-6409", email: "support@iball.co.in" },
+        "Biostar": { number: "022-40065442", email: "support@biostar.com.tw" },
+        "BRYT": { number: "022-40065442", email: "admin@brytbazaar.com (Also reachable via distributor: ganesh.yadav@vishwasmultitech.com)" },
+        "Cooler Master": { number: "022-40065442", email: "support@coolermaster.com (Most queries are handled via their Fanzone ticketing system.)" },
+        "Corsair": { number: "022-40065442", email: "support@corsair.com (Often redirects to their online ticketing portal.)" },
+        "Crucial": { number: "022-40065442", email: "crucial.service@micron.com" },
+        "Creative": { number: "022-40065442", email: "support@creative.com" },
+        "GALAX": { number: "022-40065442", email: "support@galax.com" },
+        "Inno 3D": { number: "022-40065442", email: "support@inno3d.com" },
+        "Lexar": { number: "022-40065442", email: "support@lexar.com / APAC Region: support-apac@lexar.com" },
+        "Mercury": { number: "022-40065442", email: "Not publicly listed" },
+        "Micron": { number: "022-40065442", email: "crucial.service@micron.com (Consumer queries are routed through Crucial.)" },
+        "Nextron": { number: "022-40065442", email: "sales@nxelectronics.com" },
+        "Sapphire": { number: "022-40065442", email: "Not publicly listed" },
+        "Syrotech": { number: "022-40065442", email: "support@syrotech.com" },
+        "Verbatim": { number: "022-40065442", email: "techsupport@verbatim.com" },
+        "Zotac": { number: "022-40065442", email: "support@zotac.com" },
+        "Blue Print": { number: "+91-7875770070", email: "Not publicly listed (Best reached via your local seller or distributor.)" },
+        "Cellecore": { number: "+91-7875770070", email: "info@cellecor.com / cs@cellecor.in" },
+        "Kratos": { number: "+91-7875770070", email: "support@kratos.co.uk" },
+        "Portonics": { number: "+91-7875770070", email: "Not publicly listed" },
+        "Snapup": { number: "+91-7875770070", email: "Not publicly listed" },
+        "Tag": { number: "+91-7875770070", email: "Varies by product type (Often requires contacting the original retailer for RMA.)" },
+        "Team Group": { number: "+91-7875770070", email: "rma@teamgroup.com.tw" },
+        "Rapoo": { number: "+91-7875770070", email: "Not publicly listed" },
+        "Lappies": { number: "+91-7875770070", email: "Not publicly listed (Best reached via your local seller or distributor.)" },
+        "Toreti": { number: "+91-7875770070", email: "info@toreto.in" },
+        "Pebble": { number: "+91-11-45380573", email: "support@pebblecart.com" },
+        "Philips": { number: "+91-11-45380573", email: "support@philips.com" },
+        "Truke": { number: "+91-11-45380573", email: "support@eccentricindia.com" }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.brand-btn');
+        const displayContainer = document.getElementById('products-display');
+        const titleEl = document.getElementById('selected-brand-title');
+        const contentEl = document.getElementById('product-list-content');
+        const closeBtn = document.getElementById('close-products-btn');
+
+        let activeBrand = null;
+
+        function closeDisplay() {
+            displayContainer.classList.remove('active');
+            activeBrand = null;
+            buttons.forEach(b => {
+                b.classList.remove('bg-primary', 'text-on-primary', 'border-primary');
+                b.classList.add('bg-surface', 'text-on-surface', 'border-outline-variant');
+            });
+        }
+
+        closeBtn.addEventListener('click', closeDisplay);
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const brand = e.target.dataset.brand;
+                
+                // Toggle off if clicking the same active button
+                if (activeBrand === brand) {
+                    closeDisplay();
+                    return;
+                }
+
+                activeBrand = brand;
+
+                // Update button styling
+                buttons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary', 'border-primary');
+                    b.classList.add('bg-surface', 'text-on-surface', 'border-outline-variant');
+                });
+                button.classList.remove('bg-surface', 'text-on-surface', 'border-outline-variant');
+                button.classList.add('bg-primary', 'text-on-primary', 'border-primary');
+
+                // Update content
+                titleEl.textContent = brand + " Products";
+                
+                // Clear existing
+                contentEl.innerHTML = '';
+                
+                // Create pills for each product
+                const products = brandData[brand] ? brandData[brand].split(', ') : ['Products coming soon'];
+                products.forEach(prod => {
+                    const pill = document.createElement('span');
+                    pill.className = 'px-3 py-1 bg-surface-container rounded-pill border border-outline-variant/50 text-sm whitespace-nowrap';
+                    pill.textContent = prod;
+                    contentEl.appendChild(pill);
+                });
+                
+                // Update contact info
+                const contactInfo = document.getElementById('brand-contact-info');
+                const numberEl = document.getElementById('brand-number');
+                const emailEl = document.getElementById('brand-email');
+                
+                if (brandContactData[brand]) {
+                    numberEl.textContent = brandContactData[brand].number;
+                    emailEl.textContent = brandContactData[brand].email;
+                    contactInfo.classList.remove('hidden');
+                    contactInfo.classList.add('flex');
+                } else {
+                    contactInfo.classList.add('hidden');
+                    contactInfo.classList.remove('flex');
+                }
+
+                // Show container
+                displayContainer.classList.add('active');
+            });
+        });
+    });
+</script>
+</section>
+<!-- Featured Service Highlight Area -->
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface w-full mt-auto border-t border-on-secondary/10">
+<div class="flex flex-col px-margin-mobile md:px-margin-desktop py-lg max-w-7xl mx-auto gap-lg w-full">
+<div class="flex flex-col md:flex-row justify-between items-center w-full gap-md">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">Siddhivinayak Services&nbsp;</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Support</a>
+</nav>
+<div class="font-body-md text-body-md text-secondary">© 2024 Sidhnayak Services. All rights reserved.</div>
+</div>
+<div class="w-full border-t border-on-secondary/10 pt-lg grid grid-cols-1 md:grid-cols-3 gap-lg text-on-surface-variant font-body-md"><div class="flex flex-col gap-xs"><h4 class="font-label-bold text-on-surface mb-xs">Contact Us</h4><p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">call</span> +91 8936042723</p><p class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">mail</span> rma.ranchi@gmail.com</p></div><div class="flex flex-col gap-xs"><h4 class="font-label-bold text-on-surface mb-xs">Visit Us</h4><p class="flex items-start gap-xs"><span class="material-symbols-outlined text-[18px] mt-1">location_on</span> Shop - 44, Ashok Nagar Market Complex, Ashok Nagar, Ranchi, Jharkhand 834002</p></div><div class="flex flex-col gap-xs"><h4 class="font-label-bold text-on-surface mb-xs">Operating Hours</h4><p class="">Mon - Fri: 10:30 AM - 05:00 PM</p><p class="">Sat: 10:30 AM - 02:00 PM</p></div></div></div>
+</footer>
+
+
+
+
+
+</body></html>

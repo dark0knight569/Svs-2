@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Admin Dashboard - Siddhivinayak Services</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#705d00",
+                        secondary: "#a14100",
+                        surface: "#fcf9f8",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#4d4632",
+                        "surface-container": "#f0eded",
+                        "outline-variant": "#d0c6ab",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff"
+                    },
+                    fontFamily: {
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(244, 104, 11, 0.1);
+        }
+        .bg-solar-fusion {
+            background: linear-gradient(-45deg, #FFD600, #F4680B, #FFB600, #FF8C00);
+            background-size: 400% 400%;
+            animation: gradientWave 10s ease infinite;
+        }
+        @keyframes gradientWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen font-body-md antialiased bg-solar-fusion flex flex-col">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+    <div class="flex justify-between items-center px-6 md:px-16 h-20 w-full max-w-[1440px] mx-auto">
+        <div class="font-bold text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">admin_panel_settings</span>
+            Siddhivinayak Admin
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="logoutAdmin()" class="text-error hover:text-error/80 transition-colors font-label-bold flex items-center gap-2 px-4 py-2 bg-error/10 rounded-full">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-24 px-6 md:px-16 max-w-[1440px] mx-auto w-full">
+    <div class="mb-8">
+        <h1 class="font-headline-md text-4xl text-on-surface font-bold">Dashboard Overview</h1>
+        <p class="text-on-surface-variant mt-2">Real-time updates of all incoming orders and shipping requests.</p>
+    </div>
+
+    <!-- Metrics Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="glass-panel rounded-2xl p-6 flex flex-col gap-2">
+            <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant font-label-bold">Total Orders</span>
+                <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">shopping_cart</span>
+            </div>
+            <span id="metric-orders" class="text-3xl font-bold text-on-surface">0</span>
+        </div>
+        
+        <div class="glass-panel rounded-2xl p-6 flex flex-col gap-2">
+            <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant font-label-bold">Total Revenue</span>
+                <span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">payments</span>
+            </div>
+            <span id="metric-revenue" class="text-3xl font-bold text-on-surface">₹0.00</span>
+        </div>
+        
+        <div class="glass-panel rounded-2xl p-6 flex flex-col gap-2">
+            <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant font-label-bold">Recent Activity</span>
+                <span class="material-symbols-outlined text-green-600 bg-green-100 p-2 rounded-lg">update</span>
+            </div>
+            <span id="metric-recent" class="text-lg font-semibold text-on-surface mt-auto">Checking...</span>
+        </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="glass-panel rounded-2xl p-6 overflow-hidden flex flex-col gap-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="font-bold text-2xl text-on-surface">Live Orders</h2>
+            <div class="flex items-center gap-2 text-sm text-green-600 bg-green-100 px-3 py-1 rounded-full font-label-bold">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Live
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="border-b border-outline-variant/30 text-on-surface-variant text-sm uppercase tracking-wider">
+                        <th class="pb-3 pr-4 font-bold">Order ID & Date</th>
+                        <th class="pb-3 px-4 font-bold">Customer Info</th>
+                        <th class="pb-3 px-4 font-bold">Shipping Address</th>
+                        <th class="pb-3 px-4 font-bold">Order Summary</th>
+                        <th class="pb-3 pl-4 font-bold text-right">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-tbody" class="text-sm">
+                    <!-- Populated via JS -->
+                </tbody>
+            </table>
+            
+            <div id="no-orders-msg" class="w-full py-12 text-center text-on-surface-variant italic hidden">
+                No orders have been placed yet.
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // Ensure only admin can access this page
+    if (localStorage.getItem('isAdmin') !== 'true') {
+        window.location.href = 'login.html';
+    }
+
+    function logoutAdmin() {
+        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('currentUserEmail');
+        localStorage.removeItem('userName');
+        window.location.href = 'login.html';
+    }
+
+    function fetchAndRenderOrders() {
+        const allOrders = JSON.parse(localStorage.getItem('all_orders')) || [];
+        const tbody = document.getElementById('orders-tbody');
+        const noOrdersMsg = document.getElementById('no-orders-msg');
+        
+        // Update Metrics
+        document.getElementById('metric-orders').textContent = allOrders.length;
+        const totalRev = allOrders.reduce((sum, order) => sum + parseFloat(order.total), 0);
+        document.getElementById('metric-revenue').textContent = '₹' + Number(totalRev).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        if (allOrders.length > 0) {
+            document.getElementById('metric-recent').textContent = `Last order: ${allOrders[allOrders.length - 1].date}`;
+            noOrdersMsg.classList.add('hidden');
+        } else {
+            document.getElementById('metric-recent').textContent = "No recent activity";
+            noOrdersMsg.classList.remove('hidden');
+        }
+
+        // Render Table
+        tbody.innerHTML = '';
+        
+        // Render in reverse order so newest is at the top
+        [...allOrders].reverse().forEach(order => {
+            const ship = order.shipping || {};
+            const customerName = ship.name || 'Unknown';
+            const customerEmail = order.userEmail || 'Unknown';
+            const customerPhone = ship.phone || 'Unknown';
+            const shippingAddress = ship.address || 'Address not provided';
+            
+            // Format cart items
+            let itemsText = order.item; // Fallback
+            if (order.fullCart && order.fullCart.length > 0) {
+                itemsText = order.fullCart.map(c => `${c.quantity}x ${c.name}`).join('<br>');
+            }
+
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-outline-variant/20 hover:bg-white/40 transition-colors';
+            
+            tr.innerHTML = `
+                <td class="py-4 pr-4 align-top">
+                    <div class="font-bold text-primary">${order.id}</div>
+                    <div class="text-xs text-on-surface-variant">${order.date}</div>
+                </td>
+                <td class="py-4 px-4 align-top">
+                    <div class="font-semibold text-on-surface">${customerName}</div>
+                    <div class="text-xs text-on-surface-variant">${customerEmail}</div>
+                    <div class="text-xs text-on-surface-variant flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-[14px]">phone</span> ${customerPhone}</div>
+                </td>
+                <td class="py-4 px-4 align-top max-w-[250px]">
+                    <div class="text-sm text-on-surface break-words leading-relaxed">${shippingAddress}</div>
+                </td>
+                <td class="py-4 px-4 align-top">
+                    <div class="text-sm text-on-surface-variant leading-relaxed">${itemsText}</div>
+                </td>
+                <td class="py-4 pl-4 align-top text-right">
+                    <div class="font-bold text-secondary text-lg">₹${Number(order.total).toLocaleString('en-IN', {minimumFractionDigits: 2})}</div>
+                    <div class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full inline-block mt-1">${order.status}</div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Initial render
+    fetchAndRenderOrders();
+
+    // Poll for new orders every 3 seconds to make it "real-time"
+    setInterval(fetchAndRenderOrders, 3000);
+
+</script>
+</body>
+</html>
